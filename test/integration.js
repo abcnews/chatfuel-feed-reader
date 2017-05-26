@@ -27,13 +27,15 @@ describe('integration test', () => {
       body: 'feed_current=1234&_feed_current_session=%7B%7D&_feed_global_session=%7B%7D',
     };
     handler(event, {}, (error, res) => {
+      const body = JSON.parse(res.body);
       assert.deepEqual(
-        res.messages[0].attachment.payload.elements[0].title,
+        body.messages[0].attachment.payload.elements[0].title,
         'Manchester locals open doors to concert-goers stranded after \'terror attack\''
       );
-      assert.deepEqual(res.set_attributes, {
-        global: {},
-        session: { seenItems: [8550116], current: 1234 },
+      assert.deepEqual(body.set_attributes, {
+        feed_current: 1234,
+        _feed_global_session: '{}',
+        _feed_current_session: JSON.stringify({ seen: [8550116], current: 1234 }),
       });
       done();
     });

@@ -173,7 +173,7 @@ describe('state', () => {
       it('should pass through when ids match (viewing the same feed as before)', (done) => {
         const parsedEvent = {
           current: 333,
-          session: { id: 333 },
+          session: { current: 333 },
           global: {},
         };
         state.initial(parsedEvent, (error, settings) => {
@@ -225,7 +225,7 @@ describe('state', () => {
           global: {},
         };
         state.update(parsedEvent, nextPost, (error, settings) => {
-          assert.deepEqual(settings, { session: { seenItems: [123], current: 0 }, global: {} });
+          assert.deepEqual(settings, { session: { seen: [123], current: 0 }, global: {} });
           done();
         });
       });
