@@ -20,7 +20,7 @@ module.exports = {
       'CONTENT_NEXT_STORY',
       'READER_BLOCK_NAME',
       'CONTENT_IM_DONE',
-      'READER_BLOCK_NAME',
+      'BLOCK_IM_DONE',
       'CHATFEED_BASEURL',
     ];
     const errors = [];
@@ -29,7 +29,7 @@ module.exports = {
     });
     if (errors.length) return callback(new Error(errors.join()));
 
-    async.auto({
+    return async.auto({
       parsedEvent: done => parseEvent(event, done),
       config: ['parsedEvent', (results, done) => state.initial(results.parsedEvent, done)],
       feed: ['parsedEvent', (results, done) => feed.load(results.parsedEvent.current, done)],
