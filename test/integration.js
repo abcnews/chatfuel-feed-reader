@@ -4,6 +4,7 @@ const path = require('path');
 const assert = require('assert');
 const express = require('express');
 const handler = require('../').handler;
+const config = require('../config');
 
 describe('integration test', () => {
   const app = express();
@@ -11,14 +12,7 @@ describe('integration test', () => {
     app.get('/news/feed/1234/rss.xml', (req, res) => {
       res.send(fs.readFileSync(path.join(__dirname, 'assets/justin.xml'), 'utf8'));
     });
-
-    process.env.CONTENT_READ_THE_STORY = 'Read the story 🔗';
-    process.env.CONTENT_NEXT_STORY = 'Next story';
-    process.env.CONTENT_IM_DONE = 'Thanks, I\'m done';
-    process.env.BLOCK_IM_DONE = 'back in touch (gif)';
-    process.env.READER_BLOCK_NAME = 'Feed Reader';
-    process.env.CHATFEED_BASEURL = 'http://localhost:8080';
-
+    config.CHATFEED_BASEURL = 'http://localhost:8080';
     app.listen(8080);
   });
 

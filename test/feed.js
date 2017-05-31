@@ -3,21 +3,19 @@ const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
 const feed = require('../lib/feed');
+const config = require('../config');
 
 describe('feed', () => {
   describe('cmId2URL', () => {
-    before(() => {
-      process.env.CHATFEED_BASEURL = 'http://www.abc.net.au';
-    });
     [0, null, -1].forEach((input) => {
       it(`should return false on input "${input}"`, () => {
-        const result = feed.cmId2URL(input);
+        const result = feed.cmId2URL(input, {});
         assert.deepEqual(result, false);
       });
     });
 
     it('should return a url for a positive integer', () => {
-      const result = feed.cmId2URL('999');
+      const result = feed.cmId2URL('999', config);
       assert.deepEqual(result, 'http://www.abc.net.au/news/feed/999/rss.xml');
     });
   });
