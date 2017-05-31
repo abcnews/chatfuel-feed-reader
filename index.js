@@ -5,12 +5,11 @@ const state = require('./lib/state');
 const setVars = require('./lib/setVars');
 const chatfuelTemplateItem = require('./lib/chatfuelTemplate/item');
 
-// development only
-process.env.CONTENT_READ_THE_STORY = 'Read the story 🔗';
-process.env.CONTENT_NEXT_STORY = 'Next story';
-process.env.CONTENT_IM_DONE = 'Thanks, I\'m done';
-process.env.BLOCK_IM_DONE = 'back in touch (gif)';
-process.env.READER_BLOCK_NAME = 'Feed Reader';
+// We can't configure emoji using docker-compose.yaml. Do it here.
+// FIXME: use a JSON config instead
+if (!process.env.CONTENT_READ_THE_STORY) {
+  process.env.CONTENT_READ_THE_STORY = 'Read the story 🔗';
+}
 
 module.exports = {
   handler(event, context, callback) {

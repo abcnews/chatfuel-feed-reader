@@ -7,7 +7,7 @@ export CONTENT_NEXT_STORY="Next story"
 export CONTENT_IM_DONE="Thanks, I'm done"
 export BLOCK_IM_DONE="back in touch (gif)"
 export READER_BLOCK_NAME="Feed Reader"
-export CHATFEED_BASEURL="http://www.cdn.abc.net.au/"
+export CHATFEED_BASEURL="http://www.abc.net.au/"
 export LITERAL_PATH=`pwd`/test/literals/
 export LITERAL_TIMEOUT=60000;
 
