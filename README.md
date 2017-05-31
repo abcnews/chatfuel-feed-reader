@@ -5,15 +5,27 @@ An RSS reader for the [ABC News Facebook Messenger bot](https://www.messenger.co
 
 ![Example card showing Aurora Australis story](assets/example-card.png)
 
-Usage
------
-
+Set up
+------
 This app is intended for use in AWS Lambda. General setup:
 
 * Configure this app as an AWS Lambda
 * Set requisite env vars (see below)
 * Expose via a web gateway
-* Set up in ChatFuel as a JSON API endpoint, sending through the chatfuel vars (see below)
+* Set up in Chatfuel as a JSON API endpoint, sending through the Chatfuel vars (see below)
+
+Create a feed in Chatfuel
+-------------------------
+Once the feed reader has been set up (see above), you can create feeds in
+Chatfuel by doing the following:
+
+1. Create a new block
+2. Add a `Set up user attribute` card
+3. Set the user attribute `feed_current` to the ID of the ABC News feed you wish to use. This is the number portion of the RSS feed URL
+4. Add a `Go to block` linking to the RSS Reader block
+
+Now when a user lands on your block they will have the RSS feed set and be
+redirected to the RSS feed reader. ✨
 
 Environment Variables
 ---------------------
