@@ -4,12 +4,7 @@ const feed = require('./lib/feed');
 const state = require('./lib/state');
 const setVars = require('./lib/setVars');
 const chatfuelTemplateItem = require('./lib/chatfuelTemplate/item');
-
-// We can't configure emoji using docker-compose.yaml. Do it here.
-// FIXME: use a JSON config instead
-if (!process.env.CONTENT_READ_THE_STORY) {
-  process.env.CONTENT_READ_THE_STORY = 'Read the story 🔗';
-}
+const config = require('./config');
 
 module.exports = {
   handler(event, context, callback) {
@@ -24,16 +19,16 @@ module.exports = {
     ];
     const errors = [];
     requiredVars.forEach((key) => {
-      if (!process.env[key]) errors.push(`Missing ${key}`);
+      if (!config[key]) errors.push(`Missing ${key}`);
     });
     if (errors.length) return callback(new Error(errors.join()));
 
     return async.auto({
       parsedEvent: done => parseEvent(event, done),
       config: ['parsedEvent', (results, done) => state.initial(results.parsedEvent, done)],
-      feed: ['parsedEvent', (results, done) => feed.load(results.parsedEvent.current, done)],
+      feed: ['parsedEvent', (results, done) => feed.load(results.parsedEvent.current, config,  done)],
       nextPost: ['feed', 'parsedEvent', (results, done) => state.getNext(results, done)],
-      message: ['nextPost', (results, done) => done(null, chatfuelTemplateItem(results.nextPost, results.nextPost.hasNext))],
+      message: ['nextPost', (results, done) => done(null, chatfuelTemplateItem(results.nextPost, results.nextPost.hasNext, config))],
       finalConfig: ['config', 'nextPost', (results, done) => state.update(results.config, results.nextPost, done)],
     }, (error, results) => {
       if (error) {
