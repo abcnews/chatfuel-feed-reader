@@ -1,7 +1,7 @@
 Chatfuel Feed Reader
 ====================
 
-An RSS reader for the [ABC News Facebook Messenger bot](https://www.messenger.com/t/abcnews.au).
+An RSS reader for the [ABC News Facebook Messenger bot](https://www.messenger.com/t/abcnews.au) and [Chatfuel](https://chatfuel.com/).
 
 ![Example card showing Aurora Australis story](assets/example-card.png)
 
