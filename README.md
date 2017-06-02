@@ -5,8 +5,8 @@ An RSS reader for the [ABC News Facebook Messenger bot](https://www.messenger.co
 
 ![Example card showing Aurora Australis story](assets/example-card.png)
 
-Set up
-------
+Setup
+-----
 This app is intended for use in AWS Lambda. General setup:
 
 * Configure this app as an AWS Lambda
@@ -25,7 +25,7 @@ Chatfuel by doing the following:
 4. Add a `Go to block` linking to the RSS Reader block
 
 Now when a user lands on your block they will have the RSS feed set and be
-redirected to the RSS feed reader. ✨
+redirected to the RSS feed reader. 
 
 Environment Variables
 ---------------------
