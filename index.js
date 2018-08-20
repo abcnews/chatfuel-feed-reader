@@ -79,5 +79,6 @@ function handler(event, context, callback) {
 }
 
 exports.endpoint = (request, response) => {
+  console.log(request.body);
   response.send(`Hello ${request.body.name || "World"}!`);
 };
