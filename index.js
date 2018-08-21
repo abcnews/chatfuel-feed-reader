@@ -79,7 +79,7 @@ function handler(event, context, callback) {
 }
 
 exports.endpoint = (request, response) => {
-  console.log(request);
+  console.log(request.body);
 
   handler(
     {
