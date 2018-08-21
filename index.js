@@ -82,11 +82,17 @@ function handler(event, context, callback) {
  * Google Cloud Functions calls this function.
  */
 exports.endpoint = (request, response) => {
+  if (!request.body) return; // Silently fail if no POST body
+
+  const feed_current = request.body.feed_current;
+  const _feed_current_session = request.body._feed_current_session;
+  const _feed_global_session = request.body._feed_global_session;
+
+  const postBody = `feed_current=${feed_current}&_feed_current_session=${_feed_current_session}&_feed_global_session=${_feed_global_session}`;
+
   handler(
     {
-      body: `feed_current=${request.body.feed_current}&_feed_current_session=${
-        request.body._feed_current_session
-      }&_feed_global_session=${request.body._feed_global_session}`
+      body: postBody
     },
     {},
     (error, res) => {
