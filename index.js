@@ -79,7 +79,7 @@ function handler(event, context, callback) {
 }
 
 exports.endpoint = (request, response) => {
-  console.log(request.body);
+  console.log(request);
 
   handler(
     {
@@ -88,15 +88,8 @@ exports.endpoint = (request, response) => {
     },
     {},
     (error, res) => {
-      console.log(res);
-      response.send({
-        messages: [
-          { text: "Welcome to the Chatfuel Rockets!" },
-          { text: "What are you up to?" }
-        ]
-      });
+      console.log(res.body);
+      response.send(res.body);
     }
   );
-
-  // response.send(`Hello ${request.body.name || "World"}!`);
 };
