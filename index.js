@@ -80,18 +80,23 @@ function handler(event, context, callback) {
 
 exports.endpoint = (request, response) => {
   console.log(request);
-  console.log(
-    handler(
-      {
-        body:
-          "feed_current=1234&_feed_current_session=%7B%7D&_feed_global_session=%7B%7D"
-      },
-      {},
-      (error, res) => {
-        console.log(res);
-        response.send(res);
-      }
-    )
+
+  handler(
+    {
+      body:
+        "feed_current=1234&_feed_current_session=%7B%7D&_feed_global_session=%7B%7D"
+    },
+    {},
+    (error, res) => {
+      console.log(res);
+      response.send({
+        messages: [
+          { text: "Welcome to the Chatfuel Rockets!" },
+          { text: "What are you up to?" }
+        ]
+      });
+    }
   );
+
   // response.send(`Hello ${request.body.name || "World"}!`);
 };
