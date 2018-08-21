@@ -78,18 +78,20 @@ function handler(event, context, callback) {
   );
 }
 
+/*
+ * Google Cloud Functions calls this function.
+ */
 exports.endpoint = (request, response) => {
-  console.log(request);
-
   handler(
     {
-      body:
-        "feed_current=1234&_feed_current_session=%7B%7D&_feed_global_session=%7B%7D"
+      body: `feed_current=${request.body.feed_current}&_feed_current_session=${
+        request.body._feed_current_session
+      }&_feed_global_session=${request.body._feed_global_session}`
     },
     {},
     (error, res) => {
-      console.log(res.body);
-      response.send(res.body);
+      if (error) console.log(error);
+      else response.send(res.body);
     }
   );
 };
