@@ -90,6 +90,7 @@ exports.endpoint = (request, response) => {
     },
     {},
     (error, res) => {
+      console.log(res.body)
       if (error) console.log(error);
       else response.send(res.body);
     }
