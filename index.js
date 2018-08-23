@@ -6,7 +6,7 @@ const setVars = require("./lib/setVars");
 const chatfuelTemplateItem = require("./lib/chatfuelTemplate/item");
 const config = require("./config");
 
-function handler(event, context, callback) {
+const handler = (event, context, callback) => {
   // these env vars are required
   const requiredVars = [
     "CONTENT_READ_THE_STORY",
@@ -79,9 +79,9 @@ function handler(event, context, callback) {
 }
 
 /*
- * Google Cloud Functions calls this function.
+ * Google Cloud Functions will call this function.
  */
-exports.endpoint = (request, response) => {
+const endpoint = (request, response) => {
   if (!request.body) return; // Silently fail if no POST body
 
   const feed_current = request.body.feed_current;
@@ -101,3 +101,7 @@ exports.endpoint = (request, response) => {
     }
   );
 };
+
+// Make available for fliteral web gateway
+exports.handler = handler;
+exports.endpoint = endpoint;
