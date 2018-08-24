@@ -5,25 +5,28 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha test",
-    "start": "./run.sh"
+    "start": "node ."
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abcnews/chatfuel-feed-reader"
+  },
+  "author": "Joshua Byrd <byrd.joshua@abc.net.ai",
   "license": "ISC",
   "dependencies": {
     "async": "^2.4.0",
     "cheerio": "^0.22.0",
     "he": "^1.1.1",
-    "request": "^2.81.0",
+    "request": "^2.88.0",
     "striptags": "^3.0.1"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.0.1",
-    "express": "^4.15.3",
-    "fliteral": "github:ashkyd/fliteral",
-    "mocha": "^3.4.2"
+    "express": "^4.16.3",
+    "mocha": "^5.2.0"
   }
 }
